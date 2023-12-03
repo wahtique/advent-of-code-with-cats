@@ -6,13 +6,14 @@ Advent of Code challenge solutions in Scala 3 + typelevel libraries.
 
 - [x] Scaffold day 01
 - [ ] Add g8 templating to add new days  
-- [ ] Add integration with aoc-cli
+- [x] Add integration with aoc-cli
 - [ ] Actually do the challenges
 
 ## Requirements
 
 - [scala-cli](https://scala-cli.virtuslab.org/)
 - [just](https://github.com/casey/just)
+- [aoc-cli](https://github.com/scarvalhojr/aoc-cli)
 
 ## Usage
 
