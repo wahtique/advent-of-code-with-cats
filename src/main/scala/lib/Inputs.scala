@@ -4,19 +4,16 @@ import cats.effect.IO
 import fs2.io.file.Files
 import fs2.io.file.Path
 import io.github.iltotore.iron.*
+import scala.io.Source
 
-object Inputs:
+trait InputsOps:
+  def path(year: Year, day: Day): Path
 
-  def path(inputType: InputType)(year: Year, day: Day, part: Part): Path =
-    // assume script is launched from project root directory
-    val scopeSegment = inputType match
-      case InputType.Main => "main"
-      case InputType.Test => "test"
-    val base        = s"src/$scopeSegment/inputs"
-    val yearSegment = s"year$year"
-    val daySegment  = s"day${day.toString.reverse.padTo(2, '0').reverse}"
-    val partSegment = s"part$part"
-    Path(s"$base/$yearSegment/$daySegment/$partSegment")
+  def readlines(year: Year, day: Day): IO[Seq[String]] =
+    Files[IO].readUtf8Lines(path(year, day)).compile.toList.map(_.toSeq)
 
-  def readlines(inputType: InputType)(year: Year, day: Day, part: Part): IO[Seq[String]] =
-    Files[IO].readUtf8Lines(path(inputType)(year, day, part)).compile.toList.map(_.toSeq)
+object Inputs extends InputsOps:
+  def path(year: Year, day: Day): Path =
+    val resourceId = s"year$year/day${day.toString.reverse.padTo(2, '0').reverse}.txt"
+    val resource   = getClass.getClassLoader.getResource(resourceId)
+    Path(resource.getPath)

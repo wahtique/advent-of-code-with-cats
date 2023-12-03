@@ -15,5 +15,15 @@ run YEAR=DEFAULT_YEAR DAY=DEFAULT_DAY PART=DEFAULT_PART:
 test YEAR DAY:
   scala-cli test . --test-only 'year{{YEAR}}.day{{DAY}}*'
 
-# test: year day part
-#   scala-cli test . -M year{{year}}.day{{day}}.Part{{part}}
+# download input and puzzle for a given year and day
+get YEAR DAY:
+  #!/usr/bin/env zsh
+  # make sure input directory exists
+  if [[ ! -a src/main/inputs/year{{YEAR}} ]]; then
+    mkdir -p src/main/inputs/year{{YEAR}}
+  fi  
+  # make sure puzzle directory exists
+  if [[ ! -a src/main/md/year{{YEAR}} ]]; then
+    mkdir -p src/main/md/year{{YEAR}}
+  fi
+  aoc d -o -d {{DAY}} -y {{YEAR}} -i src/main/inputs/year{{YEAR}}/day{{DAY}}.txt -p src/main/md/year{{YEAR}}/day{{DAY}}.txt

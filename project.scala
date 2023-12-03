@@ -5,3 +5,5 @@
 //> using dep io.github.iltotore::iron-cats:2.3.0
 //> using test.dep org.scalameta::munit:1.0.0-M10
 //> using test.dep org.typelevel::munit-cats-effect:2.0.0-M4
+//> using resourceDir src/main/inputs
+//> using test.resourceDir src/test/inputs

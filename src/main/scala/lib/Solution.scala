@@ -10,7 +10,7 @@ import io.github.iltotore.iron.*
 
 trait Solution[A: Show](val year: Year, val day: Day, val part: Part) extends IOApp.Simple:
   def solve(lines: Seq[String]): A
-  def inputLines: IO[Seq[String]] = Inputs.readlines(InputType.Main)(year, day, part)
+  def inputLines: IO[Seq[String]] = Inputs.readlines(year, day)
   def solution: IO[A]             = inputLines.map(solve)
   def run: IO[Unit] = async[IO]:
     val response = solution.await
