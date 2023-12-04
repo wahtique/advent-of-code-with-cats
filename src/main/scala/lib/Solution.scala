@@ -8,10 +8,10 @@ import cats.effect.implicits.*
 import cats.implicits.*
 import io.github.iltotore.iron.*
 
-trait Solution[A: Show](val year: Year, val day: Day, val part: Part) extends IOApp.Simple:
-  def solve(lines: Seq[String]): A
+trait Solution(val year: Year, val day: Day, val part: Part) extends IOApp.Simple:
+  def solve(lines: Seq[String]): Int
   def inputLines: IO[Seq[String]] = Inputs.readlines(year, day)
-  def solution: IO[A]             = inputLines.map(solve)
+  def solution: IO[Int]           = inputLines.map(solve)
   def run: IO[Unit] = async[IO]:
     val response = solution.await
     IO.println(response.show).await

@@ -11,7 +11,7 @@ alias s := scaffold
 
 # example: `just run 2023 01 1`
 run YEAR=DEFAULT_YEAR DAY=DEFAULT_DAY PART=DEFAULT_PART:
-  scala-cli run . -M year{{YEAR}}.day{{DAY}}.Part{{PART}}
+  scala-cli run . -M year{{YEAR}}.day{{DAY}}.Puzzle -- --part {{PART}}
 
 test YEAR DAY:
   scala-cli test . --test-only 'year{{YEAR}}.day{{DAY}}*'
@@ -27,7 +27,7 @@ get YEAR DAY:
   if [[ ! -a src/main/md/year{{YEAR}} ]]; then
     mkdir -p src/main/md/year{{YEAR}}
   fi
-  aoc d -o -d {{DAY}} -y {{YEAR}} -i src/main/inputs/year{{YEAR}}/day{{DAY}}.txt -p src/main/md/year{{YEAR}}/day{{DAY}}.txt
+  aoc d -o -d {{DAY}} -y {{YEAR}} -i src/main/inputs/year{{YEAR}}/day{{DAY}}.txt -p src/main/md/year{{YEAR}}/day{{DAY}}.md
 
 scaffold YEAR DAY: (get YEAR DAY)
   scala-cli run .template/scaffold.scala -- --year {{YEAR}} --day {{DAY}}

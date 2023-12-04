@@ -5,16 +5,16 @@ import cats.implicits.*
 import io.github.iltotore.iron.*
 import lib.*
 
-object Part1 extends Solution[Int](2023, 1, 1):
+object Puzzle extends PuzzleApp(2023, 1):
 
-  def solve(lines: Seq[String]): Int =
-    lines
-      .map: l =>
-        val digits = l.filter(_.isDigit).toSeq
-        Seq(digits.head, digits.last).mkString.toInt
-      .sum
+  // part 1
+  override def part1(lines: Seq[String]): Int = lines
+    .map: l =>
+      val digits = l.filter(_.isDigit).toSeq
+      Seq(digits.head, digits.last).mkString.toInt
+    .sum
 
-object Part2 extends Solution[Int](2023, 1, 2):
+  // part 2
 
   def unspellDigits(s: String) =
     def loop(acc: String, step: Int, stop: Int): String =
@@ -40,5 +40,4 @@ object Part2 extends Solution[Int](2023, 1, 2):
     // start at 3 as digits cannot be spelled with less anyway
     loop(s, 3, s.size)
 
-  def solve(lines: Seq[String]): Int =
-    Part1.solve(lines.map(unspellDigits))
+  override def part2(lines: Seq[String]): Int = part1(lines.map(unspellDigits))

@@ -23,10 +23,10 @@ object Templates:
       |import lib.SolutionSuite
       |import munit.CatsEffectSuite
       |
-      |class Part1Test extends SolutionSuite[Int]($pack.Part1):
+      |class Part1Test extends SolutionSuite(Puzzle.Part1):
       |  override val expected: Int = ???
       |
-      |class Part2Test extends SolutionSuite[Int]($pack.Part2):
+      |class Part2Test extends SolutionSuite(Puzzle.Part2):
       |  override val expected: Int = ???
     """.stripMargin
   def solution(year: String, day: String): String =
@@ -37,16 +37,14 @@ object Templates:
     s"""
       |package $pack
       |
-      |import cats.effect.implicits.*
-      |import cats.implicits.*
       |import io.github.iltotore.iron.*
       |import lib.*
       |
-      |object Part1 extends Solution[Int]($year, $trimmedDay, 1):
-      |  def solve(lines: Seq[String]): Int = ???
+      |object Puzzle extends PuzzleApp($year, $trimmedDay):
       |
-      |object Part2 extends Solution[Int]($year, $trimmedDay, 2):
-      |  def solve(lines: Seq[String]): Int = ???
+      |  override def part1(lines: Seq[String]): Int = ???
+      |
+      |  override def part2(lines: Seq[String]): Int = ???
     """.stripMargin
 
 object Scaffolder

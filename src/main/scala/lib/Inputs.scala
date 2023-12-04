@@ -10,7 +10,7 @@ trait InputsOps:
   def path(year: Year, day: Day): Path
 
   def readlines(year: Year, day: Day): IO[Seq[String]] =
-    Files[IO].readUtf8Lines(path(year, day)).compile.toList.map(_.toSeq)
+    Files[IO].readUtf8Lines(path(year, day)).filterNot(_.isBlank).compile.toList.map(_.toSeq)
 
 object Inputs extends InputsOps:
   def path(year: Year, day: Day): Path =

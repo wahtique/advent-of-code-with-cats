@@ -3,9 +3,9 @@ package lib
 import fs2.io.file.Path
 import munit.CatsEffectSuite
 
-trait SolutionSuite[A](solution: Solution[A]) extends CatsEffectSuite with InputsOps:
+trait SolutionSuite(solution: Solution) extends CatsEffectSuite with InputsOps:
   // expected output for the given test input in each part
-  def expected: A
+  def expected: Int
 
   def resourceId(year: Year, day: Day): String =
     s"year$year/day${day.toString.reverse.padTo(2, '0').reverse}/part${solution.part}.txt"
