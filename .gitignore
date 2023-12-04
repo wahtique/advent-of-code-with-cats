@@ -5,8 +5,8 @@
 hs_err_pid*
 
 # scala
-.bsp/*
-.metals/*
-.scala-build/*
+**/.bsp/*
+**/.metals/*
+**/.scala-build/*
 
 .envrc

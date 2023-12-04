@@ -1,14 +1,9 @@
 package year2023.day01
 
-import cats.effect.ExitCode
-import cats.effect.IO
-import cats.effect.IOApp
-import cats.effect.cps.*
 import cats.effect.implicits.*
 import cats.implicits.*
 import io.github.iltotore.iron.*
 import lib.*
-import lib.Inputs
 
 object Part1 extends Solution[Int](2023, 1, 1):
 

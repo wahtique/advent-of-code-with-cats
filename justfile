@@ -7,6 +7,7 @@ default:
 
 alias r := run
 alias t := test
+alias s := scaffold
 
 # example: `just run 2023 01 1`
 run YEAR=DEFAULT_YEAR DAY=DEFAULT_DAY PART=DEFAULT_PART:
@@ -27,3 +28,6 @@ get YEAR DAY:
     mkdir -p src/main/md/year{{YEAR}}
   fi
   aoc d -o -d {{DAY}} -y {{YEAR}} -i src/main/inputs/year{{YEAR}}/day{{DAY}}.txt -p src/main/md/year{{YEAR}}/day{{DAY}}.txt
+
+scaffold YEAR DAY: (get YEAR DAY)
+  scala-cli run .template/scaffold.scala -- --year {{YEAR}} --day {{DAY}}

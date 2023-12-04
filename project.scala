@@ -3,6 +3,7 @@
 //> using dep org.typelevel::cats-effect-cps:0.4.0
 //> using dep io.github.iltotore::iron:2.3.0
 //> using dep io.github.iltotore::iron-cats:2.3.0
+//> using dep com.monovore::decline:2.4.1
 //> using test.dep org.scalameta::munit:1.0.0-M10
 //> using test.dep org.typelevel::munit-cats-effect:2.0.0-M4
 //> using resourceDir src/main/inputs
